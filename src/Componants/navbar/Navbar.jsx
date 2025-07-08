@@ -28,6 +28,9 @@ let navigate=useNavigate();
         <li className="nav-item">
           <Link className="nav-link" to="/cart">Cart</Link>
         </li>
+         <li className="nav-item">
+          <Link className="nav-link" to="/allorders">AllOrders</Link>
+        </li>
       </ul>
       <ul className="navbar-nav ms-auto">
         {crrUser?<>   <li className="nav-item">

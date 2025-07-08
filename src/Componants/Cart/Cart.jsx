@@ -4,7 +4,7 @@ import LoadingScreen from '../LoaadingScreen/LoadingScreen'
 import { Link } from 'react-router-dom'
 
 export default function Cart() {
- const {numOfCarttems,priceOfCartItems,numOfPro,deleteItem}=useContext(cartcontext)
+ const {numOfCarttems,priceOfCartItems,numOfPro,deleteItem,updateCount}=useContext(cartcontext)
  
  
  return <>{numOfPro?<div className="container">
@@ -23,7 +23,8 @@ export default function Cart() {
         </div>
         
         </Link>
-        <div className='lower' >
+        <div className='lower' >5
+          <input className='form-control' value={pro.count} onChange={function(e){updateCount(pro.product.id,e.target.value)}} type="number" />
             <button onClick={function () {deleteItem(pro.product.id)}} className='btn btn-danger'>-</button>
         </div>
         </div>       
@@ -31,7 +32,12 @@ export default function Cart() {
         
       })}
     </div>
-    <h3>Total Price: <span >{priceOfCartItems}</span></h3>
+    <div className="d-flex justify-content-between">
+      <h3>Total Price: <span >{priceOfCartItems}</span></h3>
+<Link to={'/payment'}>
+<button className='btn btn-primary'>  confirm</button>
+</Link>
+    </div>
   </div>:<LoadingScreen/>}
   
   

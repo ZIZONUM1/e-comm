@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createHashRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Layout from './Componants/Login/Layout/Layout';
 import Home from './Componants/Home/Home';
 import Login from './Componants/Login/Login';
@@ -11,6 +11,8 @@ import { jwtDecode } from 'jwt-decode';
 import Profile from './Componants/Login/Profile/Profile';
 import CartContextProvider from './Conttext/CartContextProvider';
 import Cart from './Componants/Cart/Cart';
+import Payment from './Componants/Payment/Payment';
+import AllOrders from './Componants/allOrders/AllOrders';
 
 export default function App() {
 
@@ -43,7 +45,7 @@ return children;
     setcrrUser(null);
 
   }
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/", element: <Layout clearuserdata={clearuserdata} crrUser={crrUser} />, children: [
         { path: "/", element: <CartContextProvider><Home /></CartContextProvider> },
@@ -52,6 +54,8 @@ return children;
         { path: "profile", element: <Protectrout><Profile crrUser={crrUser} /></Protectrout> },
         { path: "login", element: <Login getuserdata={getuserdata} /> },
         { path: "prodetails/:id", element: <Protectrout><CartContextProvider><ProDetails /></CartContextProvider></Protectrout> },
+        { path: "allorders", element: <Protectrout><CartContextProvider><AllOrders /></CartContextProvider></Protectrout> },
+        { path: "payment", element: <Protectrout><CartContextProvider><Payment /></CartContextProvider></Protectrout> },
         { path: "BrandPro/:id", element: <BrandProducts /> },
         { path: "brand", element: <Brands /> },
         { path: "register", element: <Register /> },
